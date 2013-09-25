@@ -4,6 +4,7 @@ is supposed to be a playground for Racket macros.
 
 Components so far:
 	   Language constructs:
+
 	   c-style.rkt		An attempt at (somewhat) replicating
 	   			integer defines and C-style for-loops.
 
@@ -12,7 +13,9 @@ Components so far:
 
 	   while-attempt.rkt	Just your regular garden variety while-loop.
 
+
 	   Other:
+
 	   define-test.rkt	An attempt at making unit tests less
 	   			cumbersome to write by introducing a
 				set of macros for defining them.
