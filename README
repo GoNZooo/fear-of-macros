@@ -2,7 +2,8 @@ Spurred on and named after a tutorial written by
 Greg Hendershott [greghendershott.com] repository
 is supposed to be a playground for Racket macros.
 
-Components so far:
+Components:
+
 	   Language constructs:
 
 	   c-style.rkt		An attempt at (somewhat) replicating
