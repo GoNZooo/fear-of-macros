@@ -1,15 +1,22 @@
-Project for consolidating explorations into the world of Racket macros:
-
-Spurred on and named after a tutorial written by Greg Hendershott [greghendershott.com] repository is supposed to be a playground for Racket macros.
+Spurred on and named after a tutorial written by
+Greg Hendershott [greghendershott.com] repository
+is supposed to be a playground for Racket macros.
 
 Components so far:
 	   Language constructs:
-	   c-style.rkt		An attempt at (somewhat) replicating integer defines and C-style for-loops.
-	   py-style.rkt		An attempt at replicating the iterative binding in python's for-loops.
+	   c-style.rkt		An attempt at (somewhat) replicating
+	   			integer defines and C-style for-loops.
+
+	   py-style.rkt		An attempt at replicating the iterative
+	   			binding in python's for-loops.
+
 	   while-attempt.rkt	Just your regular garden variety while-loop.
 
 	   Other:
-	   define-test.rkt	An attempt at making unit tests less cumbersome to write by introducing a set of macros for defining them.
-	   chapters/*		Code written alongside the tutorial by GHendershott.
+	   define-test.rkt	An attempt at making unit tests less
+	   			cumbersome to write by introducing a
+				set of macros for defining them.
+
+	   chapters/*		Code written alongside the tutorial.
 
 	   
