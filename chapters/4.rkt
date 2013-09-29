@@ -91,7 +91,6 @@ awesome/stuff
 (module+ main
   (create-get/set-hyphenize hyphen-get-set)
   hyphen-get-set
-  (get-hyphen-get-set)
   (set-hyphen-get-set 5)
   (get-hyphen-get-set))
 
