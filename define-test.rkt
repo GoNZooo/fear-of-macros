@@ -55,22 +55,7 @@
 ;;; Testing a list of things with a list of functions
 (define-syntax (test-list-against-validation-functions stx)
   (syntax-case stx ()
-    [(f (line ...) (func ...))
-     #'(letrec ([loop-through
-                 (lambda (lines funcs)
-                   (if (or (null? lines) (null? funcs))
-                       #t
-                       (and ((first funcs) (first lines))
-                            (loop-through (rest lines) (rest funcs)))))])
-         (loop-through (line ...) (func ...)))]
-    [(f line-list func-list)
-     #'(letrec ([loop-through
-                 (lambda (lines funcs)
-                   (if (or (null? lines) (null? funcs))
-                       #t
-                       (and ((first funcs) (first lines))
-                            (loop-through (rest lines) (rest funcs)))))])
-         (loop-through line-list func-list))]))
+    [(f line-list func-list)]))
 
 (module+ main
   (test-list-against-validation-functions
@@ -98,6 +83,16 @@
   (test-list-against-validation-functions
    test-in
    (list (lambda (x) (= x 1)) (lambda (x) (= x 2)) (lambda (x) (= x 3))
-         (lambda (x) (= x 4)))))
+         (lambda (x) (= x 4))))
   ; => #t
+
+  (define-values (a b c) (values 1 2 3))
+  (define (test-a x)
+    (= x 1))
+  (define (test-b x)
+    (= x 2))
+  (define (test-c x)
+    (= x 3))
+  (test-list-against-validation-functions
+   (a b c) (test-a test-b test-c)))
   
