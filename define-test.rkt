@@ -52,47 +52,11 @@
        ((add2 2) 4)
        ((add2 1) 3))
 
-;;; Testing a list of things with a list of functions
-(define-syntax (test-list-against-validation-functions stx)
-  (syntax-case stx ()
-    [(f line-list func-list)]))
-
-(module+ main
-  (test-list-against-validation-functions
-   '(1 2 3)
-   (list (lambda (x) (= x 1)) (lambda (x) (= x 2)) (lambda (x) (= x 3))))
-  ; => #t
-  (test-list-against-validation-functions
-   '(1 2 3)
-   (list (lambda (x) (= x 1)) (lambda (x) (= x 2)) (lambda (x) (= x 4))))
-  ; => #f because of the changed (= x 4))
-
-  ;let's try a longer funclist than input-list
-  (test-list-against-validation-functions
-   '(1 2 3)
-   (list (lambda (x) (= x 1)) (lambda (x) (= x 2)) (lambda (x) (= x 3)) (lambda (x) (= x 4))))
-  ; => #t (so still works)
-
-  (define test-in '(1 2 3))
-  (define func-in (list (lambda (x) (= x 1)) (lambda (x) (= x 2)) (lambda (x) (= x 3))
-                        (lambda (x) (= x 4))))
-
-  (test-list-against-validation-functions test-in func-in)
-  ; => #t
-  
-  (test-list-against-validation-functions
-   test-in
-   (list (lambda (x) (= x 1)) (lambda (x) (= x 2)) (lambda (x) (= x 3))
-         (lambda (x) (= x 4))))
-  ; => #t
-
-  (define-values (a b c) (values 1 2 3))
-  (define (test-a x)
-    (= x 1))
-  (define (test-b x)
-    (= x 2))
-  (define (test-c x)
-    (= x 3))
-  (test-list-against-validation-functions
-   (a b c) (test-a test-b test-c)))
+;;; Testing a list of somethings with a list of functions
+(define (test-list-against-validation-functions inputs checks)
+  (if (or (null? inputs) (null? checks))
+      #t
+      (and ((first checks) (first inputs))
+           (test-list-against-validation-functions
+            (rest inputs) (rest checks)))))
   
